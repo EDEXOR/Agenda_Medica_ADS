@@ -28,9 +28,20 @@ if(!empty($_POST)){
    $sql3 = "insert into persona(fullname,fecha_nac,dui,id_usuario) value(\"$_POST[fullname]\",\"$_POST[fecha_nac]\",\"$_POST[dui]\",\"$val\")";
    echo $sql3;
 			$queryy = $con->query($sql3);
-			
+
+			if ($_POST["tipo"]=="2" ||$_POST["tipo"]==2) {
+	$sqlP= "select id from persona where id_usuario=\"$val\" ";
+			$id_personaQ = $con->query($sqlP);
+			$id_persona = mysqli_fetch_array($id_personaQ);
+
+			$valP = $id_persona[0];
+
+	$sql4 = "insert into medico(id_persona,id_usuario) value(\"$valP\",\"$val\")";
+	$queryy = $con->query($sql4);	
+	echo $sql4;		
+			}
 			if($queryy!=null){
-				print "<script>alert(\"Registro exitoso. Proceda a logearse\");window.location='../login.php';</script>";
+				print "<script>alert(\"Registro exitoso. Proceda a logearse\");window.location='../PanelAdmin.php';</script>";
 			}
 		}
 	}

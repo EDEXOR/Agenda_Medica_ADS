@@ -91,7 +91,7 @@
         <select id="tipo" name="tipo" class="form-control"> 
           <option value="1">Secretaria</option>
           <option value="2">Medico</option>
-          <option value="3">Administrador</option>
+          <option value="0">Administrador</option>
       </select>
       </div>
       <div class="form-group">
