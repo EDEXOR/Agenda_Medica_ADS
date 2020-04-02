@@ -906,3 +906,7 @@ table.fc-header {
 .fc-event .ui-resizable-handle {
   display: none !important;
 }
+
+.contenedorprincipal{
+  margin-top: 60px;
+}

@@ -10,6 +10,7 @@ if(!empty($_POST)){
 			$query = $con->query($sql1);
 			while ($r=$query->fetch_array()) {
 				$user_id=$r["id"];
+				$tipo_user=$r["tipo"];
 				break;
 			}
 			if($user_id==null){
@@ -17,7 +18,11 @@ if(!empty($_POST)){
 			}else{
 				session_start();
 				$_SESSION["user_id"]=$user_id;
-				print "<script>window.location='../userC.php';</script>";				
+				if($tipo_user == 0){
+					print "<script>window.location='../panelAdmin.php';</script>";
+				}else{
+					print "<script>window.location='../panelSecretaria.php';</script>";
+				}					
 			}
 		}
 	}

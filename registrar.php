@@ -25,14 +25,6 @@
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Menu</div>
-      <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action bg-light">Opcion</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Opcion</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Opcion</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Opcion</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Opcion</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Opcion</a>
-      </div>
     </div>
   </div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -53,7 +45,7 @@
   </nav>
 
   <!-- Page Content -->
-  <div class="container">
+  <div class="container contenedorprincipal">
     <div class="col-md-6">
     <h2>Registro</h2>
 
@@ -108,6 +100,7 @@
       </div>
 
       <button type="submit" class="btn btn-default">Registrar</button>
+      <a href="panelAdmin.php" class="btn btn-dark active" role="button" aria-pressed="true">Atras</a>
     </form>
     </div>
 

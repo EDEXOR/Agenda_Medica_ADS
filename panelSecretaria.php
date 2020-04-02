@@ -39,7 +39,7 @@
         <ul class="navbar-nav ml-auto">
           
           <li class="nav-item">
-            <a href="#" class="btn btn-danger btn-lg">CERRAR SESION</a>
+            <a href="php/cerrarsesion.php" class="btn btn-danger btn-lg">CERRAR SESION</a>
           </li>
         </ul>
       </div>

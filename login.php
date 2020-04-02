@@ -33,7 +33,7 @@
         <ul class="navbar-nav ml-auto">
           
           <li class="nav-item">
-            <a href="#" class="btn btn-primary btn-lg">INICIO</a>
+            <a href="index.php" class="btn btn-primary btn-lg">INICIO</a>
           </li>
         </ul>
       </div>
