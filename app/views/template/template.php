@@ -36,16 +36,26 @@ class Page extends Component{
   </div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a id="titulo"  href="#"><img src="../../web/img/iconM.png">  Multiclinicas MERC</a>
+      <a id="titulo"  href="../inicio/inicio.php"><img src="../../web/img/iconM.png">  Multiclinicas MERC</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          
           <li class="nav-item">
             <a href="../acount/logout.php" class="btn btn-danger btn-lg">CERRAR SESION</a>
           </li>
+          <li class="nav-item dropdown" style="margin-left: 10px;">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="../../web/img/user.png" class="rounded mx-auto">
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <p class="text-center font-weight-bold">'.$_SESSION['usuario']['nombres'].'</p>          
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="../usuarios/update.php?id='.$_SESSION['usuario']['id'].'"">Account</a>
+            <a class="dropdown-item" href="#">Darse de baja</a>
+          </div>
+        </li>
         </ul>
       </div>
     </div>

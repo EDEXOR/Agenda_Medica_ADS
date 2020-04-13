@@ -176,9 +176,9 @@ class Usuarios extends Validator{
     
     public function getUsuarios(){
         #Se guarda la consulta en una variable
-        $sql = "SELECT * FROM user ORDER BY nombres";
+        $sql = "SELECT * FROM user WHERE id <> ? ORDER BY nombres";
          #se guardan los parametros (datos recogidos) en una variable,como un arreglo
-        $params = array(null);
+        $params = array($_SESSION['usuario']['id']);
         #Retorna los datos que devuelve el metodo getRows 
 		return Database::getRows($sql, $params);
 	}

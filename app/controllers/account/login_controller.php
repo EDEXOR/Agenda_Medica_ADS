@@ -11,7 +11,7 @@ try{
                     if($object->setClave($_POST['password'])){					
                         if($object->checkPassword()){
 							$_SESSION['usuario']['id'] = $object->getId();
-							$_SESSION['usuario']['fullname'] = $object->getNombre();
+							$_SESSION['usuario']['nombres'] = $object->getNombre();
 							Page::showMessage(1, "Autenticación correcta", "../inicio/inicio.php");
 						}else{
 							throw new Exception("Contraseña inexistente");
