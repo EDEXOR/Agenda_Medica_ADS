@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
--- http://www.phpmyadmin.net
+-- version 4.9.1
+-- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-03-2020 a las 02:34:03
--- Versión del servidor: 5.7.9
--- Versión de PHP: 7.0.0
+-- Tiempo de generación: 14-04-2020 a las 00:38:18
+-- Versión del servidor: 10.4.8-MariaDB
+-- Versión de PHP: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -26,26 +28,15 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `citas`
 --
 
-DROP TABLE IF EXISTS `citas`;
-CREATE TABLE IF NOT EXISTS `citas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `citas` (
+  `id` int(11) NOT NULL,
   `titulo` varchar(255) NOT NULL,
   `color` varchar(7) DEFAULT NULL,
   `fecha_inicio` datetime NOT NULL,
   `fecha_fin` datetime DEFAULT NULL,
   `id_medico` int(11) DEFAULT NULL,
-  `id_paciente` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_medico` (`id_medico`),
-  KEY `id_paciente` (`id_paciente`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `citas`
---
-
-INSERT INTO `citas` (`id`, `titulo`, `color`, `fecha_inicio`, `fecha_fin`, `id_medico`, `id_paciente`) VALUES
-(1, 'Mateo Alexander', '#0071c5', '2020-03-25 00:00:00', '2020-03-27 00:00:00', 4, 1);
+  `id_paciente` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -53,14 +44,11 @@ INSERT INTO `citas` (`id`, `titulo`, `color`, `fecha_inicio`, `fecha_fin`, `id_m
 -- Estructura de tabla para la tabla `dato_expediente`
 --
 
-DROP TABLE IF EXISTS `dato_expediente`;
-CREATE TABLE IF NOT EXISTS `dato_expediente` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `dato_expediente` (
+  `id` int(11) NOT NULL,
   `id_expediente` int(11) NOT NULL,
   `dato` text NOT NULL,
-  `fecha` date NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_expediente` (`id_expediente`)
+  `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -69,13 +57,10 @@ CREATE TABLE IF NOT EXISTS `dato_expediente` (
 -- Estructura de tabla para la tabla `expediente`
 --
 
-DROP TABLE IF EXISTS `expediente`;
-CREATE TABLE IF NOT EXISTS `expediente` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `expediente` (
+  `id` int(11) NOT NULL,
   `id_paciente` int(11) NOT NULL,
-  `datos_previos` text NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_paciente` (`id_paciente`)
+  `datos_previos` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -84,14 +69,11 @@ CREATE TABLE IF NOT EXISTS `expediente` (
 -- Estructura de tabla para la tabla `horario`
 --
 
-DROP TABLE IF EXISTS `horario`;
-CREATE TABLE IF NOT EXISTS `horario` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `horario` (
+  `id` int(11) NOT NULL,
   `hora_inicio` varchar(50) NOT NULL,
   `hora_fin` varchar(50) NOT NULL,
-  `id_medico` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_medico` (`id_medico`)
+  `id_medico` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -100,22 +82,11 @@ CREATE TABLE IF NOT EXISTS `horario` (
 -- Estructura de tabla para la tabla `medico`
 --
 
-DROP TABLE IF EXISTS `medico`;
-CREATE TABLE IF NOT EXISTS `medico` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `medico` (
+  `id` int(11) NOT NULL,
   `id_persona` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_persona` (`id_persona`),
-  KEY `id_usuario` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `medico`
---
-
-INSERT INTO `medico` (`id`, `id_persona`, `id_usuario`) VALUES
-(4, 6, 30);
+  `id_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -123,15 +94,11 @@ INSERT INTO `medico` (`id`, `id_persona`, `id_usuario`) VALUES
 -- Estructura de tabla para la tabla `paciente`
 --
 
-DROP TABLE IF EXISTS `paciente`;
-CREATE TABLE IF NOT EXISTS `paciente` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `paciente` (
+  `id` int(11) NOT NULL,
   `id_persona` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_usuario` (`id_usuario`),
-  KEY `id_persona` (`id_persona`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `id_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `paciente`
@@ -146,24 +113,23 @@ INSERT INTO `paciente` (`id`, `id_persona`, `id_usuario`) VALUES
 -- Estructura de tabla para la tabla `persona`
 --
 
-DROP TABLE IF EXISTS `persona`;
-CREATE TABLE IF NOT EXISTS `persona` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `fullname` varchar(200) NOT NULL,
+CREATE TABLE `persona` (
+  `id` int(10) NOT NULL,
+  `nombres` varchar(200) NOT NULL,
+  `apellidos` varchar(200) NOT NULL,
   `fecha_nac` varchar(200) NOT NULL,
   `dui` varchar(50) DEFAULT NULL,
-  `id_usuario` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_usuario` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `id_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `persona`
 --
 
-INSERT INTO `persona` (`id`, `fullname`, `fecha_nac`, `dui`, `id_usuario`) VALUES
-(1, 'hola loooool', '2020-03-26', '12345678-9', 25),
-(6, 'Mateo Servellon', '2020-03-26', '12345678-9', 30);
+INSERT INTO `persona` (`id`, `nombres`, `apellidos`, `fecha_nac`, `dui`, `id_usuario`) VALUES
+(1, 'hola loooool', 'que tal', '2020-03-26', '12345678-9', 25),
+(6, 'Mateo Servellon', 'Gomez Rodriguez', '2020-03-26', '12345678-9', 30),
+(7, 'kevin Ángel Galdámez Majano', 'Galdámez Majano', '1999-11-15', '64967534-7', 31);
 
 -- --------------------------------------------------------
 
@@ -171,28 +137,142 @@ INSERT INTO `persona` (`id`, `fullname`, `fecha_nac`, `dui`, `id_usuario`) VALUE
 -- Estructura de tabla para la tabla `user`
 --
 
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fullname` varchar(500) NOT NULL,
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `nombres` varchar(250) NOT NULL,
+  `apellidos` varchar(250) NOT NULL,
   `username` varchar(100) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `tipo` int(1) NOT NULL,
-  `created_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `user`
 --
 
-INSERT INTO `user` (`id`, `fullname`, `username`, `email`, `password`, `tipo`, `created_at`) VALUES
-(1, 'Edward Amilcar Servellon Dominguez', 'admin', 'hola@gmail.com', 'todoloco123', 0, '2020-03-26 08:17:22'),
-(25, 'hola loooool', 'Hola', 'ja@gmail.com', 'lol', 1, '2020-03-26 18:18:41'),
-(30, 'Mateo Servellon', 'mateo', 'mateo@hola.com', 'lol', 2, '2020-03-26 19:57:10');
+INSERT INTO `user` (`id`, `nombres`, `apellidos`, `username`, `email`, `password`, `tipo`, `created_at`) VALUES
+(1, 'Edward Amilcar', 'Servellon Dominguez', 'admin', 'hola123@gmail.com', '$2y$10$vVSef.OydLQwRGLRkaR7uOvk2CwvDz/n3ONgtJI3wbWvDVtVENILW', 3, '2020-03-26 08:17:22'),
+(25, 'hola loooool', '', 'Hola', 'ja@gmail.com', 'lol', 1, '2020-03-26 18:18:41'),
+(31, 'kevin Ángel Galdámez Majano', '', 'Kevin123', 'kevingaldamezxd@gmail.com', 'GM555', 1, '2020-03-27 08:20:09'),
+(32, 'Kevin Angel', 'Rodriguez Guzman', 'K', 'kevingaldanez@gmail.com', '$2y$10$K/55t0jTQL9eCyAijNSQ..YISoElLXImZxwhSbFmGQ8ket0LqvzNq', 1, '2020-04-13 14:12:23');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `citas`
+--
+ALTER TABLE `citas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_medico` (`id_medico`),
+  ADD KEY `id_paciente` (`id_paciente`);
+
+--
+-- Indices de la tabla `dato_expediente`
+--
+ALTER TABLE `dato_expediente`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_expediente` (`id_expediente`);
+
+--
+-- Indices de la tabla `expediente`
+--
+ALTER TABLE `expediente`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_paciente` (`id_paciente`);
+
+--
+-- Indices de la tabla `horario`
+--
+ALTER TABLE `horario`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_medico` (`id_medico`);
+
+--
+-- Indices de la tabla `medico`
+--
+ALTER TABLE `medico`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_persona` (`id_persona`),
+  ADD KEY `id_usuario` (`id_usuario`);
+
+--
+-- Indices de la tabla `paciente`
+--
+ALTER TABLE `paciente`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_usuario` (`id_usuario`),
+  ADD KEY `id_persona` (`id_persona`);
+
+--
+-- Indices de la tabla `persona`
+--
+ALTER TABLE `persona`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_usuario` (`id_usuario`);
+
+--
+-- Indices de la tabla `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `citas`
+--
+ALTER TABLE `citas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `dato_expediente`
+--
+ALTER TABLE `dato_expediente`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `expediente`
+--
+ALTER TABLE `expediente`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `horario`
+--
+ALTER TABLE `horario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `medico`
+--
+ALTER TABLE `medico`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `paciente`
+--
+ALTER TABLE `paciente`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `persona`
+--
+ALTER TABLE `persona`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Restricciones para tablas volcadas
@@ -236,6 +316,7 @@ ALTER TABLE `medico`
 ALTER TABLE `paciente`
   ADD CONSTRAINT `paciente_ibfk_1` FOREIGN KEY (`id_persona`) REFERENCES `persona` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `paciente_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

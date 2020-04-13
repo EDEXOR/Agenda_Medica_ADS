@@ -12,7 +12,7 @@
             <p class="card-text">Administracion de usuarios</p>
           </div>
           <div class="card-footer">
-            <a href="registrar.php"class="btn btn-primary stretched-link">Ir al panel</a>
+            <a href="../usuarios/index.php"class="btn btn-primary stretched-link">Ir al panel</a>
           </div>
         </div>
       </div>

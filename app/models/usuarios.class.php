@@ -113,16 +113,16 @@ class Usuarios extends Validator{
         #Se ocupa una funcion nativa de php para encriptar contraseña   
         $hash = password_hash($this->clave,PASSWORD_DEFAULT);
         #Se guarda la consulta en una variable
-        $sql = "INSERT INTO usuarios(nombres,apellidos,alias,clave,telefono,correo) VALUES(?,?,?,?,?,?)";
+        $sql = "INSERT INTO user(nombres,apellidos,username,email,`password`,tipo) VALUES(?,?,?,?,?,?)";
         #se guardan los parametros (datos recogidos) en una variable,como un arreglo
-        $params = array($this->nombre,$this->apellido,$this->alias,$this->clave,$this->telefono,$this->correo);
+        $params = array($this->nombre,$this->apellido,$this->alias,$this->correo,$hash,$this->tipo);
         #Retorna el estado que devuelve el metodo executeRow 
         return Database::executeRow($sql, $params);
     }
     #Funcion para leer usuario 
     public function readUsuario(){
         #Se guarda la consulta en una variable
-		$sql = "SELECT nombres, apellidos, alias, clave, telefono ,correo FROM usuarios WHERE id_usuario = ?";
+		$sql = "SELECT nombres, apellidos, username,email,`password`,tipo FROM user WHERE id = ?";
         #se guardan los parametros (datos recogidos) en una variable,como un arreglo
         $params = array($this->idUsuario);
         #guarda los datos devueltos del metodo getRow
@@ -131,10 +131,10 @@ class Usuarios extends Validator{
             #Se guardan los datos obtenidos en las variables pertenecientes a la clase
 			$this->nombre = $usuario['nombres'];
 			$this->apellido = $usuario['apellidos'];
-			$this->alias = $usuario['alias'];
-			$this->clave = $usuario['clave'];
-            $this->telefono = $usuario['telefono'];
-            $this->correo = $usuario['correo'];            
+			$this->alias = $usuario['username'];
+			$this->correo = $usuario['email'];
+            $this->clave = $usuario['password'];
+            $this->tipo = $usuario['tipo'];            
 			return true;
 		}else{
 			return null;
@@ -142,19 +142,23 @@ class Usuarios extends Validator{
 	}
     #Funcion para actualizar usuario
     public function updateUsuario(){
-        #Se ocupa una funcion nativa de php para encriptar contraseña   
-        $hash = password_hash($this->clave,PASSWORD_DEFAULT);
          #Se guarda la consulta en una variable
-        $sql = "UPDATE usuarios SET nombres = ?,apellidos = ?,alias = ?,clave = ?,telefono = ?,correo = ? WHERE id_usuario = ?";
+        $sql = "UPDATE user SET nombres = ?,apellidos = ?,username = ?,email = ?,tipo = ? WHERE id = ?";
          #se guardan los parametros (datos recogidos) en una variable,como un arreglo
-        $params = array($this->nombre,$this->apellido,$this->alias,$hash,$this->telefono,$this->correo,$this->idUsuario);
+        $params = array($this->nombre,$this->apellido,$this->alias,$this->correo,$this->tipo,$this->idUsuario);
           #Retorna el estado que devuelve el metodo executeRow 
+        return Database::executeRow($sql, $params);
+    }
+    public function updateClave(){
+        $hash = password_hash($this->clave,PASSWORD_DEFAULT);
+        $sql = "UPDATE user SET `password` = ? WHERE id = ?";
+        $params = array($hash,$this->idUsuario);
         return Database::executeRow($sql, $params);
     }
     #Funcion para eliminar usuario
     public function deleteUsuario(){
          #Se guarda la consulta en una variable
-        $sql = "DELETE FROM usuarios WHERE id_usuario = ?";
+        $sql = "DELETE FROM user WHERE id = ?";
          #se guardan los parametros (datos recogidos) en una variable,como un arreglo
         $params = array($this->idUsuario);
            #Retorna el estado que devuelve el metodo executeRow 
@@ -163,7 +167,7 @@ class Usuarios extends Validator{
     #Funcion para busqueda de registros
     public function searchUsuario($value){
         #Se guarda la consulta en una variable
-        $sql = "SELECT * FROM usuarios WHERE alias like  ? ORDER BY alias";
+        $sql = "SELECT * FROM user WHERE username like  ? ORDER BY username";
          #se guardan los parametros (datos recogidos) en una variable,como un arreglo
         $params = array("%$value%");
         #Retorna los datos que devuelve el metodo getRows 
@@ -172,7 +176,7 @@ class Usuarios extends Validator{
     
     public function getUsuarios(){
         #Se guarda la consulta en una variable
-        $sql = "SELECT * FROM user ORDER BY fullname";
+        $sql = "SELECT * FROM user ORDER BY nombres";
          #se guardan los parametros (datos recogidos) en una variable,como un arreglo
         $params = array(null);
         #Retorna los datos que devuelve el metodo getRows 
@@ -196,7 +200,7 @@ class Usuarios extends Validator{
         $sql = "SELECT `password` FROM user WHERE id = ?";
         $params = array($this->idUsuario);
         $data = Database::getRow($sql, $params);	
-        if($this->clave == $data['password']){
+        if(password_verify($this->clave,$data['password'])){
             return true;
         }else{
             return false;
