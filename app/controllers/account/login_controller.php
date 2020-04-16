@@ -12,7 +12,14 @@ try{
                         if($object->checkPassword()){
 							$_SESSION['usuario']['id'] = $object->getId();
 							$_SESSION['usuario']['nombres'] = $object->getNombre();
+							$_SESSION['usuario']['tipo'] = $object->getTipo();
+							if ($_SESSION['usuario']['tipo'] == "1") {
 							Page::showMessage(1, "Autenticación correcta", "../inicio/inicio.php");
+							}
+							else if($_SESSION['usuario']['tipo'] == "2"){
+							Page::showMessage(1, "Autenticación correcta", "../secretaria/secretaria.php");	
+							}
+							
 						}else{
 							throw new Exception("Contraseña inexistente");
 						}
