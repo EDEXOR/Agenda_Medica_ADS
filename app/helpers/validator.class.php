@@ -122,6 +122,21 @@ class Validator{
 			return false;
 		}
 	}
+	public function validateFecha($value){
+		if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$value)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function validateDui($value){
+		if (preg_match("/(^\d{8})-(\d$)/",$value)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }
 ?>

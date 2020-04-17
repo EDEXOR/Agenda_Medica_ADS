@@ -23,6 +23,7 @@ class Page extends Component{
   <link href="../../web/recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../../web/css/estilo.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../../web/recursos/bootstrap/css/font.min.css">
+  <link rel="stylesheet" type="text/css" href="../../web/recursos/bootstrap/css/bootstrap-datepicker.min.css">
   <script src="../../web/js/sweetalert.min.js"></script>
 </head>
 
@@ -36,7 +37,13 @@ class Page extends Component{
   </div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a id="titulo"  href="../inicio/inicio.php"><img src="../../web/img/iconM.png">  Multiclinicas MERC</a>
+    ');
+    if($_SESSION['usuario']['tipo'] == 1){
+print('  <a id="titulo" href="../inicio/inicio.php"><img src="../../web/img/iconM.png">  Multiclinicas MERC</a>');
+    }else if($_SESSION['usuario']['tipo'] == 2) {
+      print('  <a id="titulo" href="../secretaria/secretaria.php"><img src="../../web/img/iconM.png">  Multiclinicas MERC</a>');
+    }
+    print('
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -131,7 +138,9 @@ class Page extends Component{
         </footer>
 
         <script src="../../web/recursos/jquery/jquery.js"></script>
+        <script src="../../web/recursos/bootstrap/js/bootstrap-datepicker.min.js"></script>
         <script src="../../web/recursos/bootstrap/js/bootstrap.bundle.js"></script>
+        <script src="../../web/js/script.js"></script>
         </body>
         </html>
         ');

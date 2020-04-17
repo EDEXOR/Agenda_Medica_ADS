@@ -24,7 +24,7 @@
             <p class="card-text">Administracion de clientes</p>
           </div>
           <div class="card-footer">
-            <a href="#" class="btn btn-primary">Ir al panel</a>
+            <a href="../personas/indexPeople.php" class="btn btn-primary">Ir al panel</a>
           </div>
         </div>
       </div><div class="col-lg-3 col-md-6 mb-4">
