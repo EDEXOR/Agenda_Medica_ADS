@@ -19,7 +19,6 @@ class Page extends Component{
   <meta name="author" content="">
 
   <title> Multiclinicas Merc</title>
-
   <link href="../../web/recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../../web/css/estilo.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../../web/recursos/bootstrap/css/font.min.css">
