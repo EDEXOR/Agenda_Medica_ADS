@@ -19,12 +19,18 @@ class Page extends Component{
   <meta name="author" content="">
 
   <title> Multiclinicas Merc</title>
-
   <link href="../../web/recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../../web/css/estilo.css" rel="stylesheet">
+
+  <link href="http://localhost:81/Agenda_Medica_ADS/web/css/fullcalendar.css" rel="stylesheet" />
+  <link href="http://localhost:81/Agenda_Medica_ADS/web/recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://localhost:81/Agenda_Medica_ADS/web/css/estilo.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../../web/recursos/bootstrap/css/font.min.css">
   <link rel="stylesheet" type="text/css" href="../../web/recursos/bootstrap/css/bootstrap-datepicker.min.css">
   <script src="../../web/js/sweetalert.min.js"></script>
+   <script src="http://localhost:81/Agenda_Medica_ADSS/web/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="http://localhost:81/Agenda_Medica_ADSS/web/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -139,6 +145,7 @@ print('  <a id="titulo" href="../inicio/inicio.php"><img src="../../web/img/icon
 
         <script src="../../web/recursos/jquery/jquery.js"></script>
         <script src="../../web/recursos/bootstrap/js/bootstrap-datepicker.min.js"></script>
+        
         <script src="../../web/recursos/bootstrap/js/bootstrap.bundle.js"></script>
         <script src="../../web/js/script.js"></script>
         </body>
