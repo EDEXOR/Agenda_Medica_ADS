@@ -134,4 +134,12 @@ public function getFecha(){
           #Retorna el estado que devuelve el metodo executeRow 
        return Database::executeRow($sql, $params);
    }
+   public function getPersonas(){
+    #Se guarda la consulta en una variable
+    $sql = "SELECT * FROM persona ORDER BY nombres";
+     #se guardan los parametros (datos recogidos) en una variable,como un arreglo
+    $params = array(null);
+    #Retorna los datos que devuelve el metodo getRows 
+    return Database::getRows($sql, $params);
+}
 }

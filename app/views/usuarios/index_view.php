@@ -30,7 +30,6 @@
       <table class="table">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">id</th>
             <th scope="col">Nombres</th>
             <th scope="col">Apellidos</th>
             <th scope="col">Alias</th>
@@ -45,7 +44,6 @@
 foreach($data as $row){
 print('
 <tr>
-    <td>'.$row['id'].'</td>
     <td>'.$row['nombres'].'</td>
     <td>'.$row['apellidos'].'</td>
     <td>'.$row['username'].'</td>

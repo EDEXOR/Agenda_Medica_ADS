@@ -27,7 +27,7 @@ try{
 	if($data){
 		require_once("../../app/views/personas/indexPeople_view.php");
 	}else{
-		Page::showMessage(3, "No hay pacientes disponibles", "create.php");
+		Page::showMessage(3, "No hay pacientes disponibles", "createPeople.php");
 	}
 }catch(Exception $error){
 	#Se llama al metodo showMessage y se le pasan los argumentos indicados en este caso mensaje de error
