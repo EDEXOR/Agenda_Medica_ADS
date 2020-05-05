@@ -15,7 +15,7 @@ try{
                         throw new Exception("No se pudo editar el usuario");
                     }    
                 }else{
-                    throw new Exception("Ingrese la contraseña");
+                    throw new Exception("Ingrese la contraseña, tiene que llevar: mayusculas,minusculas,numeros y simbolos min:8 caracteres");
                 }
 			}else{
 				throw new Exception("Las contraseñas no coinciden");

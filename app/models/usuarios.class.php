@@ -68,7 +68,7 @@ class Usuarios extends Validator{
 
 //Elementos de clave para ingresar
     public function setClave($value){
-		if($this->validateAlphanumeric($value,1,50)){
+		if($this->validatePassword($value)){
 			$this->clave = $value;
 			return true;
 		  }else{
@@ -116,9 +116,21 @@ class Usuarios extends Validator{
         $sql = "INSERT INTO user(nombres,apellidos,username,email,`password`,tipo) VALUES(?,?,?,?,?,?)";
         #se guardan los parametros (datos recogidos) en una variable,como un arreglo
         $params = array($this->nombre,$this->apellido,$this->alias,$this->correo,$hash,$this->tipo);
-        #Retorna el estado que devuelve el metodo executeRow 
+        #Retorna el estado que devuelve el metodo executeRow        
         return Database::executeRow($sql, $params);
     }
+
+    public function insertTipo(){
+        $lastId = Database::getLastRowId();
+        if($this->tipo == 3){
+        $sql = "INSERT INTO medico(id_usuario) VALUES(?)";
+        $params = array($lastId);
+        return Database::executeRow($sql,$params);    
+        }else{
+            return true;
+        }
+    }
+
     #Funcion para leer usuario 
     public function readUsuario(){
         #Se guarda la consulta en una variable

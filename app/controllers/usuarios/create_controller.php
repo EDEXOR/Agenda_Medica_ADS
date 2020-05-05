@@ -14,7 +14,11 @@ try{
                                 if($object->setCorreo($_POST['correo'])){
                                     if($object->setTipo($_POST['tipo'])){
                                         if($object->createUsuario()){
-                                            Page::showMessage(1, "Usuario creado", "index.php");
+                                            if($object->insertTipo()){
+                                                Page::showMessage(1, "Usuario creado", "index.php");                                              
+                                            }else{
+                                                throw new Exception("No se pudo crear el usuario doctor");
+                                            }
                                         }else{
                                             throw new Exception("No se pudo crear el usuario");
                                         }    
@@ -26,7 +30,7 @@ try{
                                     throw new Exception("Ingrese el correo");
                                 }
                         }else{
-                            throw new Exception("Ingresar clave");
+                            throw new Exception("Ingresar clave, tiene que llevar: mayusculas,minusculas,numeros y simbolos min:8 caracteres");
                         }   
                         }else{
                             throw new Exception("Las contraseñas no coinciden");

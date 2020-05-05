@@ -11,7 +11,11 @@ try{
                     if($object->setDui($_POST['dui'])){
                        if($object->setFecha($_POST['fecha'])){
                         if($object->createPersona()){
-                            Page::showMessage(1, "Persona creada", "indexPeople.php");
+                            if($object->insertPaciente()){
+                                Page::showMessage(1, "Persona creada", "indexPeople.php");
+                            }else{
+                                throw Exception("No se pudo crear el paciente");
+                            }                            
                         }else{
                             throw new Exception("No se pudo crear la persona");
                         }   

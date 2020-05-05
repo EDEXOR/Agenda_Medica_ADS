@@ -42,13 +42,14 @@
           <!--Se generan los datos de la tabla a partir del recorrido de un foreach-->
           <?php
 foreach($data as $row){
+  $Tipo = ($row['tipo'] == 1) ?'Administrador':($row['tipo']==2) ? 'Secretaria':'Doctor'; 
 print('
 <tr>
     <td>'.$row['nombres'].'</td>
     <td>'.$row['apellidos'].'</td>
     <td>'.$row['username'].'</td>
     <td>'.$row['email'].'</td>
-    <td>'.$row['tipo'].'</td>
+    <td>'.$Tipo.'</td>
     <td>
     <a href="update.php?id='.$row['id'].'"><img src="../../web/img/iconos/edit.png"></a>
     <a href="delete.php?id='.$row['id'].'"><img src="../../web/img/iconos/delete.png"></a>

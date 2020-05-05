@@ -84,7 +84,13 @@ public function getFecha(){
         #Retorna el estado que devuelve el metodo executeRow 
         return Database::executeRow($sql, $params);
     }
-    
+    public function insertPaciente(){
+        $lastId = Database::getLastRowId();        
+        $sql = "INSERT INTO paciente(id_persona) VALUES(?)";
+        $params = array($lastId);
+        return Database::executeRow($sql,$params);    
+    }
+
     #Funcion para leer usuario 
     public function readPersona(){
         #Se guarda la consulta en una variable
